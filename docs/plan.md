@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-chore/tooling
+chore/husky
 ```
 
 ---
@@ -29,7 +29,7 @@ chore/tooling
 main
 └── country-search
     ├── [done] docs/sdd-skeleton       # эти docs и скилл следующего шага
-    ├── [    ] chore/tooling           # TypeScript, ESLint, Prettier, Jest, tsc
+    ├── [done] chore/tooling           # TypeScript, ESLint, Prettier, Jest, tsc
     ├── [    ] chore/husky             # pre-commit = lint-staged, pre-push = npm test
     ├── [    ] feat/debounce           # debounce, красный затем зелёный
     ├── [    ] feat/map-country        # mapCountryResponse на фикстуре
