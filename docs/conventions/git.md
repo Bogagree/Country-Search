@@ -69,4 +69,4 @@ feat: implement debounce
 7. пройденный чеклист поведения;
 8. самопроверка по баллам.
 
-Футер `Made with Cursor` **не добавлять**.
+Футер `Made with Cursor`, `Made by Cursor` и любые похожие подписи **не добавлять** — ни в PR, ни в коммиты, ни в README.

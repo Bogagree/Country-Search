@@ -2,6 +2,8 @@
 
 Текст для PR `country-search` → `main`. До шага `feat/readme-deploy` этот чеклист в описание не вставлять. PR не мержить. Submit в RS App не нажимать.
 
+В описание PR, коммиты, README и остальные тексты не писать `Made with Cursor`, `Made by Cursor` и любые похожие подписи.
+
 ## Country Search
 
 1. **Task:** https://github.com/rolling-scopes-school/tasks/blob/master/fullstack-engineering/tasks/country-search/README.md
