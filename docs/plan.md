@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-chore/husky
+feat/debounce
 ```
 
 ---
@@ -30,7 +30,7 @@ main
 └── country-search
     ├── [done] docs/sdd-skeleton       # эти docs и скилл следующего шага
     ├── [done] chore/tooling           # TypeScript, ESLint, Prettier, Jest, tsc
-    ├── [    ] chore/husky             # pre-commit = lint-staged, pre-push = npm test
+    ├── [done] chore/husky             # pre-commit = lint-staged, pre-push = npm test
     ├── [    ] feat/debounce           # debounce, красный затем зелёный
     ├── [    ] feat/map-country        # mapCountryResponse на фикстуре
     ├── [    ] feat/search-countries   # fetch, response.ok, HttpError, 404
@@ -44,22 +44,22 @@ main
     └── [    ] feat/readme-deploy      # Pages, текст сдаточного PR
 ```
 
-| Шаг                    | Спека                                      | Что закрывает                                      |
-| ---------------------- | ------------------------------------------ | -------------------------------------------------- |
-| `docs/sdd-skeleton`    | [docs/README.md](./README.md)              | знания в файлах, не в чате                         |
-| `chore/tooling`        | [tooling.md](./specs/tooling.md)           | TypeScript 5, ESLint + Prettier 5                  |
-| `chore/husky`          | [tooling.md](./specs/tooling.md)           | pre-commit 3, pre-push 2                           |
-| `feat/debounce`        | [search.md](./specs/search.md)             | TDD 5; свой debounce со сбросом таймера 10         |
-| `feat/map-country`     | [search.md](./specs/search.md)             | TDD 5; чистый маппер карточки                      |
-| `feat/search-countries`| [search.md](./specs/search.md)             | TDD 5; `response.ok` и `HttpError` 5; 404 как пусто 10 |
-| `feat/classify-error`  | [search.md](./specs/search.md)             | TDD 5; `AbortError` не ошибка экрана 10; таймаут 5 |
-| `feat/search-session`  | [search.md](./specs/search.md)             | abort при каждом изменении ввода 15                |
-| `test/request-race`    | [search.md](./specs/search.md)             | отдельный тест гонки 10                            |
-| `feat/app-shell`       | [ui.md](./specs/ui.md)                     | пустой `body`, каркас                              |
-| `feat/search-screen`   | [ui.md](./specs/ui.md)                     | состояния 10; «Повторить» 5; быстрый набор 5       |
-| `feat/country-detail`  | [ui.md](./specs/ui.md)                     | детальный вид по клику 5                           |
-| `docs/design`          | [design.md](./specs/design.md)             | `DESIGN.md`, 20                                    |
-| `feat/readme-deploy`   | [submit-checklist.md](./submit-checklist.md) | деплой и схема PR, иначе штраф 50                |
+| Шаг                     | Спека                                        | Что закрывает                                          |
+| ----------------------- | -------------------------------------------- | ------------------------------------------------------ |
+| `docs/sdd-skeleton`     | [docs/README.md](./README.md)                | знания в файлах, не в чате                             |
+| `chore/tooling`         | [tooling.md](./specs/tooling.md)             | TypeScript 5, ESLint + Prettier 5                      |
+| `chore/husky`           | [tooling.md](./specs/tooling.md)             | pre-commit 3, pre-push 2                               |
+| `feat/debounce`         | [search.md](./specs/search.md)               | TDD 5; свой debounce со сбросом таймера 10             |
+| `feat/map-country`      | [search.md](./specs/search.md)               | TDD 5; чистый маппер карточки                          |
+| `feat/search-countries` | [search.md](./specs/search.md)               | TDD 5; `response.ok` и `HttpError` 5; 404 как пусто 10 |
+| `feat/classify-error`   | [search.md](./specs/search.md)               | TDD 5; `AbortError` не ошибка экрана 10; таймаут 5     |
+| `feat/search-session`   | [search.md](./specs/search.md)               | abort при каждом изменении ввода 15                    |
+| `test/request-race`     | [search.md](./specs/search.md)               | отдельный тест гонки 10                                |
+| `feat/app-shell`        | [ui.md](./specs/ui.md)                       | пустой `body`, каркас                                  |
+| `feat/search-screen`    | [ui.md](./specs/ui.md)                       | состояния 10; «Повторить» 5; быстрый набор 5           |
+| `feat/country-detail`   | [ui.md](./specs/ui.md)                       | детальный вид по клику 5                               |
+| `docs/design`           | [design.md](./specs/design.md)               | `DESIGN.md`, 20                                        |
+| `feat/readme-deploy`    | [submit-checklist.md](./submit-checklist.md) | деплой и схема PR, иначе штраф 50                      |
 
 FIRST — свойство тестов обязательных функций, не отдельный шаг. Проверяется по [search.md](./specs/search.md) и [conventions/code.md](./conventions/code.md).
 
