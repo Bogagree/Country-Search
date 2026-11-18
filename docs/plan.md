@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-feat/readme-deploy
+план закрыт
 ```
 
 ---
@@ -41,7 +41,7 @@ main
     ├── [done] feat/search-screen      # загрузка, карточки, пусто, ошибка, повтор
     ├── [done] feat/country-detail     # клик по карточке
     ├── [done] docs/design             # DESIGN.md по уже написанному коду
-    └── [    ] feat/readme-deploy      # Pages, текст сдаточного PR
+    └── [done] feat/readme-deploy      # Pages, текст сдаточного PR
 ```
 
 | Шаг                     | Спека                                        | Что закрывает                                          |
