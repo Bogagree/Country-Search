@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-feat/search-screen
+feat/country-detail
 ```
 
 ---
@@ -38,7 +38,7 @@ main
     ├── [done] feat/search-session     # abort на каждое изменение ввода
     ├── [done] test/request-race       # один коммит: мок с инверсией порядка
     ├── [done] feat/app-shell          # пустой body, el(), каркас экрана
-    ├── [    ] feat/search-screen      # загрузка, карточки, пусто, ошибка, повтор
+    ├── [done] feat/search-screen      # загрузка, карточки, пусто, ошибка, повтор
     ├── [    ] feat/country-detail     # клик по карточке
     ├── [    ] docs/design             # DESIGN.md по уже написанному коду
     └── [    ] feat/readme-deploy      # Pages, текст сдаточного PR
