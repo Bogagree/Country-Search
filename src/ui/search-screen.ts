@@ -1,5 +1,6 @@
 import { el } from "../dom.js";
 import { createSearchSession, type SearchState } from "../search-session.js";
+import { renderCountryDetail } from "./country-detail.js";
 
 export const SEARCH_DELAY_MS = 300;
 
@@ -57,6 +58,7 @@ export function createSearchScreen(): HTMLElement {
   function renderState(state: SearchState): void {
     status.textContent = state.kind === "loading" ? "Загрузка…" : "";
     list.replaceChildren();
+    detail.replaceChildren();
     message.className = "message";
     message.replaceChildren();
 
@@ -75,23 +77,21 @@ export function createSearchScreen(): HTMLElement {
 
     if (state.kind === "results") {
       for (const hit of state.hits) {
-        list.append(
-          el("li", {
-            children: [
-              el("button", {
-                className: "card",
-                attrs: { type: "button" },
-                children: [
-                  el("span", { className: "card__flag", text: hit.card.flag }),
-                  el("strong", { text: hit.card.name }),
-                  el("span", { text: hit.card.capital }),
-                  el("span", { text: hit.card.region }),
-                  el("span", { text: String(hit.card.population) }),
-                ],
-              }),
-            ],
-          }),
-        );
+        const card = el("button", {
+          className: "card",
+          attrs: { type: "button" },
+          children: [
+            el("span", { className: "card__flag", text: hit.card.flag }),
+            el("strong", { text: hit.card.name }),
+            el("span", { text: hit.card.capital }),
+            el("span", { text: hit.card.region }),
+            el("span", { text: String(hit.card.population) }),
+          ],
+        });
+        card.addEventListener("click", () => {
+          renderCountryDetail(detail, hit.raw);
+        });
+        list.append(el("li", { children: [card] }));
       }
     }
   }
