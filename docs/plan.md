@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-feat/map-country
+feat/search-countries
 ```
 
 ---
@@ -32,7 +32,7 @@ main
     ├── [done] chore/tooling           # TypeScript, ESLint, Prettier, Jest, tsc
     ├── [done] chore/husky             # pre-commit = lint-staged, pre-push = npm test
     ├── [done] feat/debounce           # debounce, красный затем зелёный
-    ├── [    ] feat/map-country        # mapCountryResponse на фикстуре
+    ├── [done] feat/map-country        # mapCountryResponse на фикстуре
     ├── [    ] feat/search-countries   # fetch, response.ok, HttpError, 404
     ├── [    ] feat/classify-error     # AbortError, TimeoutError, HttpError
     ├── [    ] feat/search-session     # abort на каждое изменение ввода
