@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-feat/classify-error
+feat/search-session
 ```
 
 ---
@@ -34,7 +34,7 @@ main
     ├── [done] feat/debounce           # debounce, красный затем зелёный
     ├── [done] feat/map-country        # mapCountryResponse на фикстуре
     ├── [done] feat/search-countries   # fetch, response.ok, HttpError, 404
-    ├── [    ] feat/classify-error     # AbortError, TimeoutError, HttpError
+    ├── [done] feat/classify-error     # AbortError, TimeoutError, HttpError
     ├── [    ] feat/search-session     # abort на каждое изменение ввода
     ├── [    ] test/request-race       # один коммит: мок с инверсией порядка
     ├── [    ] feat/app-shell          # пустой body, el(), каркас экрана
