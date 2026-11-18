@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-feat/debounce
+feat/map-country
 ```
 
 ---
@@ -31,7 +31,7 @@ main
     ├── [done] docs/sdd-skeleton       # эти docs и скилл следующего шага
     ├── [done] chore/tooling           # TypeScript, ESLint, Prettier, Jest, tsc
     ├── [done] chore/husky             # pre-commit = lint-staged, pre-push = npm test
-    ├── [    ] feat/debounce           # debounce, красный затем зелёный
+    ├── [done] feat/debounce           # debounce, красный затем зелёный
     ├── [    ] feat/map-country        # mapCountryResponse на фикстуре
     ├── [    ] feat/search-countries   # fetch, response.ok, HttpError, 404
     ├── [    ] feat/classify-error     # AbortError, TimeoutError, HttpError
