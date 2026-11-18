@@ -72,7 +72,6 @@ FIRST — свойство тестов обязательных функций,
 - lodash и чужие debounce, кэш, мемоизация
 - Гонка только флагом «последний ответ» без `AbortController.abort()`
 - `innerHTML`, `insertAdjacentHTML`
-- Кэш ответов и история `localStorage` (бонус, в обязательный объём не входит)
 - Выдуманный текст «описания» страны: в ответе `/name/{query}` такого поля нет
 - `DESIGN.md` до шага `docs/design`
 - Merge PR `country-search` → `main`

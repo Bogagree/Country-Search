@@ -20,16 +20,21 @@ export type CountrySearch = (
   signal: AbortSignal,
 ) => Promise<unknown[]>;
 
+export type SearchSession = {
+  setQuery: (text: string) => void;
+  searchNow: (text: string) => void;
+};
+
 export function createSearchSession(options: {
   delay: number;
   search?: CountrySearch;
   onChange: (state: SearchState) => void;
-}): { setQuery: (text: string) => void } {
+}): SearchSession {
   const search = options.search ?? searchCountries;
   let controller: AbortController | null = null;
   let lastQuery = "";
 
-  const run = debounce((query: string) => {
+  function execute(query: string): void {
     const current = controller;
 
     if (query.length === 0 || current === null || current.signal.aborted) {
@@ -63,24 +68,34 @@ export function createSearchSession(options: {
         options.onChange({ kind: "error", query: lastQuery });
       },
     );
-  }, options.delay);
+  }
+
+  const run = debounce(execute, options.delay);
+
+  function begin(text: string): void {
+    controller?.abort();
+
+    if (text.length === 0) {
+      controller = null;
+      lastQuery = "";
+      options.onChange({ kind: "cleared" });
+      return;
+    }
+
+    controller = new AbortController();
+    lastQuery = text;
+    options.onChange({ kind: "loading" });
+  }
 
   return {
     setQuery(text: string) {
-      controller?.abort();
-
-      if (text.length === 0) {
-        controller = null;
-        lastQuery = "";
-        options.onChange({ kind: "cleared" });
-        run("");
-        return;
-      }
-
-      controller = new AbortController();
-      lastQuery = text;
-      options.onChange({ kind: "loading" });
+      begin(text);
       run(text);
+    },
+    searchNow(text: string) {
+      begin(text);
+      run("");
+      execute(text);
     },
   };
 }

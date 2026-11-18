@@ -50,7 +50,7 @@ describe("createSearchSession", () => {
     states: SearchState[];
     created: AbortController[];
     search: jest.Mock<CountrySearch>;
-    session: { setQuery: (text: string) => void };
+    session: ReturnType<typeof createSearchSession>;
   } {
     const states: SearchState[] = [];
     const created: AbortController[] = [];
@@ -84,6 +84,21 @@ describe("createSearchSession", () => {
 
     expect(search).not.toHaveBeenCalled();
     expect(states.at(-1)).toEqual({ kind: "cleared" });
+  });
+
+  it("runs a chosen query immediately and drops the pending debounce", async () => {
+    const { search, session } = start();
+    search.mockResolvedValue([spain]);
+
+    session.setQuery("fr");
+    session.searchNow("spain");
+
+    expect(search).toHaveBeenCalledTimes(1);
+    expect(search).toHaveBeenCalledWith("spain", expect.any(AbortSignal));
+
+    await jest.advanceTimersByTimeAsync(delay);
+
+    expect(search).toHaveBeenCalledTimes(1);
   });
 
   it("aborts the previous controller before debounce fires", () => {

@@ -1,6 +1,32 @@
 import { el } from "../dom.js";
+import { createCachedSearch } from "../search-cache.js";
+import { searchCountries } from "../search-countries.js";
+import { readSearchHistory, rememberSearchQuery } from "../search-history.js";
 import { createSearchSession, type SearchState } from "../search-session.js";
 import { renderCountryDetail } from "./country-detail.js";
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function flagNode(raw: unknown, name: string, fallback: string): HTMLElement {
+  const flags = isRecord(raw) && isRecord(raw.flags) ? raw.flags : undefined;
+  const src =
+    flags !== undefined && typeof flags.svg === "string"
+      ? flags.svg
+      : flags !== undefined && typeof flags.png === "string"
+        ? flags.png
+        : undefined;
+
+  if (src === undefined) {
+    return el("span", { className: "card__flag", text: fallback });
+  }
+
+  return el("img", {
+    className: "card__flag",
+    attrs: { src, alt: name },
+  });
+}
 
 export const SEARCH_DELAY_MS = 300;
 
@@ -18,6 +44,7 @@ export function createSearchScreen(): HTMLElement {
     text: "Поиск страны",
     attrs: { for: "country-query" },
   });
+  const history = el("div", { className: "history" });
   const status = el("p", {
     className: "status",
     attrs: { role: "status" },
@@ -38,6 +65,7 @@ export function createSearchScreen(): HTMLElement {
         attrs: { role: "search" },
         children: [label, input],
       }),
+      history,
       status,
       list,
       message,
@@ -52,8 +80,35 @@ export function createSearchScreen(): HTMLElement {
 
   const session = createSearchSession({
     delay: SEARCH_DELAY_MS,
+    search: createCachedSearch(searchCountries),
     onChange: renderState,
   });
+
+  function showHistory(): void {
+    history.replaceChildren();
+    const queries = readSearchHistory(localStorage);
+
+    if (queries.length === 0) {
+      return;
+    }
+
+    history.append(
+      el("span", { className: "history__label", text: "Недавние" }),
+    );
+
+    for (const query of queries) {
+      const chip = el("button", {
+        className: "history__item",
+        text: query,
+        attrs: { type: "button" },
+      });
+      chip.addEventListener("click", () => {
+        input.value = query;
+        session.searchNow(query);
+      });
+      history.append(chip);
+    }
+  }
 
   function renderState(state: SearchState): void {
     status.textContent = state.kind === "loading" ? "Загрузка…" : "";
@@ -63,6 +118,8 @@ export function createSearchScreen(): HTMLElement {
     message.replaceChildren();
 
     if (state.kind === "empty") {
+      rememberSearchQuery(localStorage, input.value);
+      showHistory();
       message.className = "message is-empty";
       message.textContent = "ничего не найдено";
       return;
@@ -76,12 +133,15 @@ export function createSearchScreen(): HTMLElement {
     }
 
     if (state.kind === "results") {
+      rememberSearchQuery(localStorage, input.value);
+      showHistory();
+
       for (const hit of state.hits) {
         const card = el("button", {
           className: "card",
           attrs: { type: "button" },
           children: [
-            el("span", { className: "card__flag", text: hit.card.flag }),
+            flagNode(hit.raw, hit.card.name, hit.card.flag),
             el("strong", { text: hit.card.name }),
             el("span", { text: hit.card.capital }),
             el("span", { text: hit.card.region }),
@@ -104,6 +164,8 @@ export function createSearchScreen(): HTMLElement {
   input.addEventListener("input", () => {
     session.setQuery(input.value);
   });
+
+  showHistory();
 
   return screen;
 }
