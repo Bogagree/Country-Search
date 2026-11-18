@@ -120,4 +120,14 @@ src/**/*.test.ts           → рядом с модулем, tsc их не эм�
 
 На шаге `feat/readme-deploy` workflow пушит в Pages результат `npm ci`, `npm test`, `npm run build`. В артефакт входят `index.html`, `dist/` и `css/`. Ссылки в `index.html` относительные.
 
-Ожидаемый URL: `https://bogagree.github.io/Country-Search/`. Репозиторий приватный. Если бесплатный Pages с этой видимостью не откроется, зафиксировать новый decision, а не переключать видимость молча.
+Ожидаемый URL: `https://bogagree.github.io/Country-Search/`. Видимость репозитория после этого решения изменилась: см. [D-008](#d-008-репозиторий-публичный-ради-github-pages).
+
+---
+
+## D-008: Репозиторий публичный ради GitHub Pages
+
+- Status: Accepted
+- Date: 2026-11-18
+- Почему: бесплатный план не включает Pages для приватного репозитория
+
+Репозиторий `Bogagree/Country-Search` публичный. Видимость сменил владелец, чтобы workflow мог опубликовать `https://bogagree.github.io/Country-Search/`. Источник Pages — GitHub Actions, не ветка. Ветке `country-search` разрешён деплой в окружение `github-pages`, потому что PR в `main` не мержится.
