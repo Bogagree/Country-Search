@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-test/request-race
+feat/app-shell
 ```
 
 ---
@@ -36,7 +36,7 @@ main
     ├── [done] feat/search-countries   # fetch, response.ok, HttpError, 404
     ├── [done] feat/classify-error     # AbortError, TimeoutError, HttpError
     ├── [done] feat/search-session     # abort на каждое изменение ввода
-    ├── [    ] test/request-race       # один коммит: мок с инверсией порядка
+    ├── [done] test/request-race       # один коммит: мок с инверсией порядка
     ├── [    ] feat/app-shell          # пустой body, el(), каркас экрана
     ├── [    ] feat/search-screen      # загрузка, карточки, пусто, ошибка, повтор
     ├── [    ] feat/country-detail     # клик по карточке
