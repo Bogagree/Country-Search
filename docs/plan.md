@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-feat/app-shell
+feat/search-screen
 ```
 
 ---
@@ -37,7 +37,7 @@ main
     ├── [done] feat/classify-error     # AbortError, TimeoutError, HttpError
     ├── [done] feat/search-session     # abort на каждое изменение ввода
     ├── [done] test/request-race       # один коммит: мок с инверсией порядка
-    ├── [    ] feat/app-shell          # пустой body, el(), каркас экрана
+    ├── [done] feat/app-shell          # пустой body, el(), каркас экрана
     ├── [    ] feat/search-screen      # загрузка, карточки, пусто, ошибка, повтор
     ├── [    ] feat/country-detail     # клик по карточке
     ├── [    ] docs/design             # DESIGN.md по уже написанному коду
