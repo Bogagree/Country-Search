@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-docs/design
+feat/readme-deploy
 ```
 
 ---
@@ -40,7 +40,7 @@ main
     ├── [done] feat/app-shell          # пустой body, el(), каркас экрана
     ├── [done] feat/search-screen      # загрузка, карточки, пусто, ошибка, повтор
     ├── [done] feat/country-detail     # клик по карточке
-    ├── [    ] docs/design             # DESIGN.md по уже написанному коду
+    ├── [done] docs/design             # DESIGN.md по уже написанному коду
     └── [    ] feat/readme-deploy      # Pages, текст сдаточного PR
 ```
 
