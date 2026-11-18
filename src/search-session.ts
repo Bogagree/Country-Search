@@ -1,12 +1,10 @@
+import { classifySearchError } from "./classify-error.js";
+import { debounce } from "./debounce.js";
+import { mapCountryResponse, type CountryCard } from "./map-country.js";
+import { searchCountries } from "./search-countries.js";
+
 export type SearchHit = {
-  card: {
-    name: string;
-    flag: string;
-    capital: string;
-    region: string;
-    population: number;
-    languages: string[];
-  };
+  card: CountryCard;
   raw: unknown;
 };
 
@@ -27,6 +25,62 @@ export function createSearchSession(options: {
   search?: CountrySearch;
   onChange: (state: SearchState) => void;
 }): { setQuery: (text: string) => void } {
-  void options;
-  throw new Error("not implemented");
+  const search = options.search ?? searchCountries;
+  let controller: AbortController | null = null;
+  let lastQuery = "";
+
+  const run = debounce((query: string) => {
+    const current = controller;
+
+    if (query.length === 0 || current === null || current.signal.aborted) {
+      return;
+    }
+
+    void search(query, current.signal).then(
+      (countries) => {
+        if (current.signal.aborted) {
+          return;
+        }
+
+        if (countries.length === 0) {
+          options.onChange({ kind: "empty" });
+          return;
+        }
+
+        options.onChange({
+          kind: "results",
+          hits: countries.map((raw) => ({
+            card: mapCountryResponse(raw),
+            raw,
+          })),
+        });
+      },
+      (error: unknown) => {
+        if (current.signal.aborted || classifySearchError(error) === "abort") {
+          return;
+        }
+
+        options.onChange({ kind: "error", query: lastQuery });
+      },
+    );
+  }, options.delay);
+
+  return {
+    setQuery(text: string) {
+      controller?.abort();
+
+      if (text.length === 0) {
+        controller = null;
+        lastQuery = "";
+        options.onChange({ kind: "cleared" });
+        run("");
+        return;
+      }
+
+      controller = new AbortController();
+      lastQuery = text;
+      options.onChange({ kind: "loading" });
+      run(text);
+    },
+  };
 }
