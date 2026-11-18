@@ -13,7 +13,7 @@
 ## Next (для нового чата)
 
 ```text
-feat/search-countries
+feat/classify-error
 ```
 
 ---
@@ -33,7 +33,7 @@ main
     ├── [done] chore/husky             # pre-commit = lint-staged, pre-push = npm test
     ├── [done] feat/debounce           # debounce, красный затем зелёный
     ├── [done] feat/map-country        # mapCountryResponse на фикстуре
-    ├── [    ] feat/search-countries   # fetch, response.ok, HttpError, 404
+    ├── [done] feat/search-countries   # fetch, response.ok, HttpError, 404
     ├── [    ] feat/classify-error     # AbortError, TimeoutError, HttpError
     ├── [    ] feat/search-session     # abort на каждое изменение ввода
     ├── [    ] test/request-race       # один коммит: мок с инверсией порядка
